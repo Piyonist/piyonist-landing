@@ -129,6 +129,7 @@ if (faqItems.length > 0) {
 const translations = {
     en: {
         'nav-early-access-btn': 'Join Early Access',
+        'nav-brand': 'Piyonist',
         'hero-title': 'Path to Chess Mastery: <br> Your Personal AI Coach.',
         'hero-description': 'Analyze your moves in real time with Piyonist, instantly discover strategic mistakes, and elevate your game with personalized training that unleashes your potential.',
         'hero-early-access-btn': 'Join Early Access',
@@ -162,10 +163,12 @@ const translations = {
         'footer-text': '© 2024 Piyonist. All rights reserved.<br>Developed by Turkey\'s young minds. 🇹🇷',
         'footer-about-link': 'About',
         'footer-faq-link': 'FAQ',
-        'footer-contact-link': 'Contact'
+        'footer-contact-link': 'Contact',
+        'site-title': 'Piyonist - AI-Powered Chess Coach'
     },
     tr: {
         'nav-early-access-btn': 'Erken Erişime Katıl',
+        'nav-brand': 'Piyonist Satranç',
         'hero-title': 'Satrançta Ustalığa Giden Yol: <br> Kişisel Yapay Zeka Koçunuz.',
         'hero-description': 'Piyonist ile hamlelerinizi gerçek zamanlı analiz edin, stratejik hatalarınızı anında keşfedin ve potansiyelinizi ortaya çıkaracak kişiselleştirilmiş eğitimlerle oyununuzu zirveye taşıyın.',
         'hero-early-access-btn': 'Erken Erişime Katıl',
@@ -199,7 +202,8 @@ const translations = {
         'footer-text': '© 2024 Piyonist. Tüm hakları saklıdır.<br>Türkiye\'nin genç beyinleri tarafından geliştirilmiştir. 🇹🇷',
         'footer-about-link': 'Hakkında',
         'footer-faq-link': 'S.S.S',
-        'footer-contact-link': 'İletişim'
+        'footer-contact-link': 'İletişim',
+        'site-title': 'Piyonist - Yapay Zeka Destekli Satranç Koçu'
     }
 };
 
@@ -215,7 +219,10 @@ function applyTranslations(lang) {
         }
     });
 
-    
+    if (texts['site-title']) {
+        document.title = texts['site-title'];
+    }
+
     document.documentElement.lang = lang === 'tr' ? 'tr' : 'en';
 }
 
