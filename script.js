@@ -143,7 +143,7 @@ const translations = {
         'feature2-desc': 'Illuminates not only obvious mistakes but also overlooked tactical opportunities and positional weaknesses.',
         'feature3-title': 'Personalized Training Plan',
         'feature3-desc': 'Piyonist suggests tailored training programs, puzzles, and strategy lessons based on your playing style and frequent mistakes.',
-        'story-title': 'From a Dream to a National Mission',
+        'story-title': 'From a Dream to a Global Mission',
         'story-p1': "Piyonist is the dream of a dedicated team of high-school students from all over Turkey who love technology and chess. Our goal is not just to develop a chess engine, but to merge AI technologies with chess education and contribute to our country's advancement in this field.",
         'story-p2': 'With the support of the Ministry of National Education of the Republic of Turkey and the Turkish Chess Federation, we aim to help chess players of all ages reach their full potential.',
         'cta-title': 'Ready for a New Era in Chess?',
