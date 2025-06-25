@@ -31,11 +31,16 @@
                 <a href="https://www.linkedin.com/company/piyonist-satranc?trk=public_post_feed-actor-name"
                     class="logo">
                     <img style="border-radius: 20px; width: 50px !important; height: 50px !important;"
-                        src="images/piyonist-logo" alt="Piyonist Logo">
+                        src="images/piyonist-logo.jpeg" alt="Piyonist Logo">
                     <span
                         style="color: gray;text-decoration: none;position: absolute;transform: translate(20px,10px);font-size: 16x;">Piyonist Satranç</span>
                 </a>
-                <a href="#cta" class="btn btn-secondary">Erken Erişime Katıl</a>
+                <a href="#cta" class="btn btn-secondary" id="nav-early-access-btn">Erken Erişime Katıl</a>
+                
+                <select id="language-selector" class="language-selector">
+                    <option value="en" selected>EN</option>
+                    <option value="tr">TR</option>
+                </select>
             </nav>
         </div>
     </header>
@@ -51,13 +56,13 @@
 
                     
                     <div class="hero-content fade-in">
-                        <h1>Satrançta Ustalığa Giden Yol: <br> Kişisel Yapay Zeka Koçunuz.</h1>
-                        <p>Piyonist ile hamlelerinizi gerçek zamanlı analiz edin, stratejik hatalarınızı anında keşfedin
+                        <h1 id="hero-title">Satrançta Ustalığa Giden Yol: <br> Kişisel Yapay Zeka Koçunuz.</h1>
+                        <p id="hero-description">Piyonist ile hamlelerinizi gerçek zamanlı analiz edin, stratejik hatalarınızı anında keşfedin
                             ve potansiyelinizi ortaya çıkaracak kişiselleştirilmiş eğitimlerle oyununuzu zirveye
                             taşıyın.</p>
                         <div class="hero-buttons">
-                            <a href="#cta" class="btn btn-primary">Erken Erişime Katıl</a>
-                            <a href="#features" class="btn btn-secondary">Nasıl Çalışır? ↓</a>
+                            <a href="#cta" class="btn btn-primary" id="hero-early-access-btn">Erken Erişime Katıl</a>
+                            <a href="#features" class="btn btn-secondary" id="hero-how-it-works-btn">Nasıl Çalışır? ↓</a>
                         </div>
                     </div>
 
@@ -73,7 +78,7 @@
 
         <section id="sponsors" class="sponsors-section">
             <div class="container text-center">
-                <h3 class="fade-in">TÜRKİYE'NİN GELECEĞİNE GÜVENENLER</h3>
+                <h3 class="fade-in" id="sponsors-title">TÜRKİYE'NİN GELECEĞİNE GÜVENENLER</h3>
                 <div class="sponsor-logos fade-in">
                     <img style="width: 220px; height: 220px;" src="images/piyonist-meblogo.svg"
                         alt="Milli Eğitim Bakanlığı Logosu">
@@ -86,26 +91,26 @@
         <section id="features" class="features-section">
             <div class="container">
                 <div class="section-title text-center fade-in">
-                    <h2>Oyununuzu Dönüştüren Teknoloji</h2>
-                    <p>Satrançtaki sınırlarınızı Piyonist'in yenilikçi özellikleriyle aşın.</p>
+                    <h2 id="features-title">Oyununuzu Dönüştüren Teknoloji</h2>
+                    <p id="features-description">Satrançtaki sınırlarınızı Piyonist'in yenilikçi özellikleriyle aşın.</p>
                 </div>
                 <div class="features-grid">
                     <div class="feature-card glass-card fade-in">
                         <i class="fas fa-brain"></i>
-                        <h3>Gerçek Zamanlı Hamle Analizi</h3>
-                        <p>Siz oynarken yapay zekamız her hamlenizi anında değerlendirir. Rakibinizin potansiyel
+                        <h3 id="feature1-title">Gerçek Zamanlı Hamle Analizi</h3>
+                        <p id="feature1-desc">Siz oynarken yapay zekamız her hamlenizi anında değerlendirir. Rakibinizin potansiyel
                             cevaplarını ve en güçlü karşı hamleleri saniyeler içinde görün.</p>
                     </div>
                     <div class="feature-card glass-card fade-in">
                         <i class="fas fa-crosshairs"></i>
-                        <h3>Stratejik Hata Tespiti</h3>
-                        <p>Sadece bariz hataları değil, gözden kaçan taktiksel fırsatları ve pozisyonel zayıflıkları da
+                        <h3 id="feature2-title">Stratejik Hata Tespiti</h3>
+                        <p id="feature2-desc">Sadece bariz hataları değil, gözden kaçan taktiksel fırsatları ve pozisyonel zayıflıkları da
                             belirleyerek kör noktalarınızı aydınlatır.</p>
                     </div>
                     <div class="feature-card glass-card fade-in">
                         <i class="fas fa-chart-line"></i>
-                        <h3>Size Özel Eğitim Planı</h3>
-                        <p>Piyonist, oyun stilinize ve sık yaptığınız hatalara göre size özel antrenman programları,
+                        <h3 id="feature3-title">Size Özel Eğitim Planı</h3>
+                        <p id="feature3-desc">Piyonist, oyun stilinize ve sık yaptığınız hatalara göre size özel antrenman programları,
                             bulmacalar ve strateji dersleri önerir.</p>
                     </div>
                 </div>
@@ -119,12 +124,12 @@
                         <img src="images/piyonist-sunum.jpeg" alt="Piyonist Geliştirici Ekibi">
                     </div>
                     <div class="story-text fade-in">
-                        <h2>Bir Hayalden Ulusal Bir Hedefe</h2>
-                        <p>Piyonist, Türkiye'nin dört bir yanından gelen, teknoloji ve satranç tutkunu lise
+                        <h2 id="story-title">Bir Hayalden Ulusal Bir Hedefe</h2>
+                        <p id="story-p1">Piyonist, Türkiye'nin dört bir yanından gelen, teknoloji ve satranç tutkunu lise
                             öğrencilerinden oluşan güçlü bir ekibin hayalidir. Amacımız, sadece bir satranç motoru
                             geliştirmek değil, aynı zamanda yapay zekâ teknolojilerini satranç eğitimiyle birleştirerek
                             ülkemizin bu alandaki gelişimine katkıda bulunmaktır.</p>
-                        <p>T.C. Millî Eğitim Bakanlığı ve Türkiye Satranç Federasyonu gibi değerli kurumların
+                        <p id="story-p2">T.C. Millî Eğitim Bakanlığı ve Türkiye Satranç Federasyonu gibi değerli kurumların
                             desteğiyle, her yaştan satranç oyuncusunun kendi potansiyelinin zirvesine ulaşmasına
                             yardımcı olmayı hedefliyoruz.</p>
                     </div>
@@ -135,14 +140,14 @@
         <section id="cta" class="cta-section">
             <div class="container text-center">
                 <div id="cta-content-wrapper" class="cta-content glass-card fade-in">
-                    <h2>Satrançta Yeni Bir Çağa Hazır mısınız?</h2>
-                    <p>Piyonist'in gelişimine tanıklık etmek ve bu devrimin ilk parçası olmak için erken erişim
+                    <h2 id="cta-title">Satrançta Yeni Bir Çağa Hazır mısınız?</h2>
+                    <p id="cta-description">Piyonist'in gelişimine tanıklık etmek ve bu devrimin ilk parçası olmak için erken erişim
                         programımıza şimdi katılın.</p>
 
                     <form id="early-access-form" class="cta-form" action="https://formspree.io/f/xeoklpwl"
                         method="POST">
-                        <input type="email" name="email" placeholder="E-posta adresinizi girin" required>
-                        <button type="submit" class="btn btn-primary">Beni Listeye Ekle</button>
+                        <input type="email" name="email" id="cta-email-input" placeholder="E-posta adresinizi girin" required>
+                        <button type="submit" class="btn btn-primary" id="cta-submit-btn">Beni Listeye Ekle</button>
                     </form>
                 </div>
             </div>
@@ -152,32 +157,32 @@
     <section id="faq" class="faq-section">
         <div class="container text-center">
             <div class="section-title fade-in">
-                <h2>Sıkça Sorulan Sorular</h2>
-                <p>Piyonist hakkında aklınıza takılabilecek soruların cevapları.</p>
+                <h2 id="faq-title">Sıkça Sorulan Sorular</h2>
+                <p id="faq-description">Piyonist hakkında aklınıza takılabilecek soruların cevapları.</p>
             </div>
 
             <div class="faq-container fade-in">
 
-                <div class="faq-item glass-card">
+                <div class="faq-item glass-card" id="faq1-item">
                     <div class="faq-question">
-                        <h4>Piyonist tam olarak ne işe yarıyor?</h4>
+                        <h4 id="faq1-question">Piyonist tam olarak ne işe yarıyor?</h4>
                         <div class="faq-icon">+</div>
                     </div>
                     <div class="faq-answer">
-                        <p>Piyonist, satranç maçlarınızı oynarken veya sonrasında analiz eden bir yapay zeka koçudur.
+                        <p id="faq1-answer">Piyonist, satranç maçlarınızı oynarken veya sonrasında analiz eden bir yapay zeka koçudur.
                             Hamlelerinizin gücünü ölçer, yaptığınız kritik hataları size gösterir ve oyun tarzınıza göre
                             kişiselleştirilmiş eğitim önerileri sunarak daha iyi bir oyuncu olmanıza yardımcı olur.</p>
                     </div>
                 </div>
 
 
-                <div class="faq-item glass-card">
+                <div class="faq-item glass-card" id="faq2-item">
                     <div class="faq-question">
-                        <h4>Piyonist kimler için uygun?</h4>
+                        <h4 id="faq2-question">Piyonist kimler için uygun?</h4>
                         <div class="faq-icon">+</div>
                     </div>
                     <div class="faq-answer">
-                        <p>Piyonist, satranca yeni başlayanlardan orta seviyedeki turnuva oyuncularına kadar her
+                        <p id="faq2-answer">Piyonist, satranca yeni başlayanlardan orta seviyedeki turnuva oyuncularına kadar her
                             seviyeden satranç meraklısı için tasarlanmıştır. Amacınız oyununuzdaki kör noktaları
                             keşfetmek ve stratejik düşünme yeteneğinizi geliştirmekse, Piyonist sizin için ideal bir
                             araçtır.</p>
@@ -185,26 +190,26 @@
                 </div>
 
 
-                <div class="faq-item glass-card">
+                <div class="faq-item glass-card" id="faq3-item">
                     <div class="faq-question">
-                        <h4>Kullanmak için teknik bilgi gerekiyor mu?</h4>
+                        <h4 id="faq3-question">Kullanmak için teknik bilgi gerekiyor mu?</h4>
                         <div class="faq-icon">+</div>
                     </div>
                     <div class="faq-answer">
-                        <p>Hayır, kesinlikle gerekmiyor. Piyonist, son derece kullanıcı dostu bir arayüze sahiptir.
+                        <p id="faq3-answer">Hayır, kesinlikle gerekmiyor. Piyonist, son derece kullanıcı dostu bir arayüze sahiptir.
                             Oynadığınız maçın PGN dosyasını yüklemek veya platformda oynamak, analizi başlatmak için
                             yeterlidir. Tüm karmaşık analizler arka planda, sizin için otomatik olarak yapılır.</p>
                     </div>
                 </div>
 
 
-                <div class="faq-item glass-card">
+                <div class="faq-item glass-card" id="faq4-item">
                     <div class="faq-question">
-                        <h4>Piyonist ücretsiz mi olacak?</h4>
+                        <h4 id="faq4-question">Piyonist ücretsiz mi olacak?</h4>
                         <div class="faq-icon">+</div>
                     </div>
                     <div class="faq-answer">
-                        <p>Erken erişim programına katılan kullanıcılarımıza ve projenin başlangıç aşamasında bize
+                        <p id="faq4-answer">Erken erişim programına katılan kullanıcılarımıza ve projenin başlangıç aşamasında bize
                             destek olanlara özel avantajlar sunmayı planlıyoruz. Platformun temel analiz özellikleri
                             ücretsiz olacak şekilde bir model üzerinde çalışıyoruz. Detaylar lansman tarihinde
                             netleşecektir.</p>
@@ -217,21 +222,21 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-left">
-                    <img style="border-radius: 20px;" src="images/piyonist-logo" alt="Piyonist Beyaz Logo"
+                    <img style="border-radius: 20px;" src="images/piyonist-logo.jpeg" alt="Piyonist Beyaz Logo"
                         class="footer-logo">
-                    <p>© 2024 Piyonist. Tüm hakları saklıdır.<br>Türkiye'nin genç beyinleri tarafından geliştirilmiştir.
+                    <p id="footer-text">© 2024 Piyonist. Tüm hakları saklıdır.<br>Türkiye'nin genç beyinleri tarafından geliştirilmiştir.
                         🇹🇷</p>
                 </div>
                 <div class="footer-right">
-                    <a href="#">Hakkında</a>
-                    <a href="#faq">S.S.S</a>
+                    <a href="#" id="footer-about-link">Hakkında</a>
+                    <a href="#faq" id="footer-faq-link">S.S.S</a>
                     <span id="tlfnmr">Email : piyonistsatranc2025@gmail.com</span>
-                    <a href="#contact" class="no-action" id="ilt" onclick="tik()">İletişim</a>
+                    <a href="#contact" class="no-action" id="footer-contact-link">İletişim</a>
                     
                     <div class="social-icons">
                         <a href="https://x.com/PiyonistSatranc"><i class="fab fa-x"></i></a>
                         <a href="https://www.instagram.com/piyonist.satranc/"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/company/piyonist-satranc?trk=public_post_feed-actor-image"><i
+                        <a href="https://www.linkedin.com/company/piyonist-satranc"><i
                                 class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>

@@ -577,3 +577,16 @@ body {
     .footer-content { flex-direction: column; text-align: center; }
     .footer-right { flex-direction: column; gap: 1.5rem; }
 }
+
+.language-selector {
+    background: transparent;
+    color: var(--text-light);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.language-selector option {
+    color: #000;
+}
