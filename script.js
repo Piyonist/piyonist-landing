@@ -182,7 +182,7 @@ const translations = {
         'feature2-desc': 'Sadece bariz hataları değil, gözden kaçan taktiksel fırsatları ve pozisyonel zayıflıkları da belirleyerek kör noktalarınızı aydınlatır.',
         'feature3-title': 'Size Özel Eğitim Planı',
         'feature3-desc': 'Piyonist, oyun stilinize ve sık yaptığınız hatalara göre size özel antrenman programları, bulmacalar ve strateji dersleri önerir.',
-        'story-title': 'Bir Hayalden Ulusal Bir Hedefe',
+        'story-title': 'Bir Hayalden Global Bir Hedefe',
         'story-p1': 'Piyonist, Türkiye\'nin dört bir yanından gelen, teknoloji ve satranç tutkunu lise öğrencilerinden oluşan güçlü bir ekibin hayalidir. Amacımız, sadece bir satranç motoru geliştirmek değil, aynı zamanda yapay zekâ teknolojilerini satranç eğitimiyle birleştirerek ülkemizin bu alandaki gelişimine katkıda bulunmaktır.',
         'story-p2': 'T.C. Millî Eğitim Bakanlığı ve Türkiye Satranç Federasyonu gibi değerli kurumların desteğiyle, her yaştan satranç oyuncusunun kendi potansiyelinin zirvesine ulaşmasına yardımcı olmayı hedefliyoruz.',
         'cta-title': 'Satrançta Yeni Bir Çağa Hazır mısınız?',
