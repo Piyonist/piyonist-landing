@@ -1443,12 +1443,14 @@
                     detailsContentWrapper.classList.toggle('visible');
 
                     if (isNowVisible) {
-                        showDetailsBtn.innerHTML = `<i class="fas fa-chevron-up" style="margin-right: 8px;"></i> Detayları Gizle`;
+                        const currentLang = langSelector ? langSelector.value : 'tr';
+                        showDetailsBtn.innerHTML = translations[currentLang]['show-details-btn-hide'];
                         setTimeout(() => {
                             showDetailsBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
                         }, 200);
                     } else {
-                        showDetailsBtn.innerHTML = `<i class="fas fa-chevron-down" style="margin-right: 8px;"></i> Daha Fazla Detay`;
+                        const currentLang = langSelector ? langSelector.value : 'tr';
+                        showDetailsBtn.innerHTML = translations[currentLang]['show-details-btn'];
                     }
                 });
             }
@@ -1504,7 +1506,9 @@
                     'step2-title': '2. Analyze Your Accuracy with Our Chess Engine',
                     'step2-desc': 'Piyonist\'s powerful AI engine analyzes your game within seconds, identifying critical moments, missed opportunities, and recurring errors.',
                     'step3-title': '3. Take Private Lessons on Your Weaknesses with Our Chess Coach',
-                    'step3-desc': 'Review your personalized report, then train with targeted lessons just like studying with a master coach to eliminate your weak points.'
+                    'step3-desc': 'Review your personalized report, then train with targeted lessons just like studying with a master coach to eliminate your weak points.',
+                    'show-details-btn': '<i class="fas fa-chevron-down" style="margin-right: 8px;"></i> More Details',
+                    'show-details-btn-hide': '<i class="fas fa-chevron-up" style="margin-right: 8px;"></i> Hide Details'
                 },
                 tr: {
                     'nav-early-access-btn': 'Erken Erişime Katıl',
@@ -1556,7 +1560,9 @@
                     'step2-title': '2. Satranç motorumuz ile doğruluğunuzu analiz edin',
                     'step2-desc': 'Piyonist\'in güçlü yapay zeka motoru, oyununuzu saniyeler içinde analiz eder. Kritik anları, kaçan fırsatları ve tekrarlayan hatalarınızı tespit eder.',
                     'step3-title': '3. Satranç koçumuz ile eksikleriniz üzerine özel ders yapın',
-                    'step3-desc': 'Size özel hazırlanan detaylı raporu inceleyin. Satranç koçumuz ile eksikleriniz üzerine aynı bir usta ile ders yaparmış gibi özel ders yapın ve eksiklerinizi tamamlayın.'
+                    'step3-desc': 'Size özel hazırlanan detaylı raporu inceleyin. Satranç koçumuz ile eksikleriniz üzerine aynı bir usta ile ders yaparmış gibi özel ders yapın ve eksiklerinizi tamamlayın.',
+                    'show-details-btn': '<i class="fas fa-chevron-down" style="margin-right: 8px;"></i> Daha Fazla Detay',
+                    'show-details-btn-hide': '<i class="fas fa-chevron-up" style="margin-right: 8px;"></i> Detayları Gizle'
                 }
             };
 
