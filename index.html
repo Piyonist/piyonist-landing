@@ -1257,8 +1257,8 @@
                 Daha Fazla Detay
             </button>
             <div id="details-nav-container" class="details-nav">
-                <a href="#tech-infra" class="btn btn-nav-details">Teknolojik Altyapı</a>
-                <a href="#how-it-works-detailed" class="btn btn-nav-details">Platformun İşleyişi</a>
+                <a id="nav-tech-infra" href="#tech-infra" class="btn btn-nav-details">Teknolojik Altyapı</a>
+                <a id="nav-how-it-works-detailed" href="#how-it-works-detailed" class="btn btn-nav-details">Platformun İşleyişi</a>
             </div>
         </div>
     </section>
@@ -1267,12 +1267,12 @@
         <section id="tech-infra" class="details-section-content">
             <div class="container">
                 <div class="section-title text-center">
-                    <h2>Teknik Derinlik & Performans</h2>
-                    <p>Piyonist'in motorunu besleyen teknoloji ve analiz doğruluğumuza dair veriler.</p>
+                    <h2 id="tech-infra-title">Teknik Derinlik & Performans</h2>
+                    <p id="tech-infra-description">Piyonist'in motorunu besleyen teknoloji ve analiz doğruluğumuza dair veriler.</p>
                 </div>
                 <div class="details-grid">
                     <div class="details-text">
-                        <h3>Doğruluk ve Verimlilik</h3>
+                        <h3 id="tech-accuracy-title">Doğruluk ve Verimlilik</h3>
                         <p>Geliştirdiğimiz satranç motoru, milyonlarca hamlelik dev bir veri seti üzerinde eğitilmiştir.
                             Bu sayede, standart oyun pozisyonlarında %98'in üzerinde bir doğruluk oranıyla en iyi
                             hamleyi tahmin edebilmektedir. Stratejik hataları tespit etme algoritmamız, sadece bariz
@@ -1294,26 +1294,26 @@
         <section id="how-it-works-detailed" class="details-section-content">
             <div class="container text-center">
                 <div class="section-title">
-                    <h2>Platformun İşleyişi</h2>
-                    <p>Piyonist ile potansiyelinizi keşfetmek sadece üç basit adımdan oluşuyor.</p>
+                    <h2 id="how-it-works-detailed-title">Platformun İşleyişi</h2>
+                    <p id="how-it-works-detailed-description">Piyonist ile potansiyelinizi keşfetmek sadece üç basit adımdan oluşuyor.</p>
                 </div>
                 <div class="step-cards-container">
                     <div class="step-card glass-card">
                         <i class="fas fa-upload"></i>
-                        <h3>1. Piyonist üzerinden oyun oynayın</h3>
-                        <p>Oyunlarınızı doğrudan platformumuzda oynayın veya Lichess, Chess.com gibi sitelerden PGN
+                        <h3 id="step1-title">1. Piyonist üzerinden oyun oynayın</h3>
+                        <p id="step1-desc">Oyunlarınızı doğrudan platformumuzda oynayın veya Lichess, Chess.com gibi sitelerden PGN
                             formatında indirdiğiniz maçlarınızı sisteme yükleyin.</p>
                     </div>
                     <div class="step-card glass-card">
                         <i class="fas fa-cogs"></i>
-                        <h3>2. Satranç motorumuz ile doğruluğunuzu analiz edin</h3>
-                        <p>Piyonist'in güçlü yapay zeka motoru, oyununuzu saniyeler içinde analiz eder. Kritik anları,
+                        <h3 id="step2-title">2. Satranç motorumuz ile doğruluğunuzu analiz edin</h3>
+                        <p id="step2-desc">Piyonist'in güçlü yapay zeka motoru, oyununuzu saniyeler içinde analiz eder. Kritik anları,
                             kaçan fırsatları ve tekrarlayan hatalarınızı tespit eder.</p>
                     </div>
                     <div class="step-card glass-card">
                         <i class="fas fa-graduation-cap"></i>
-                        <h3>3. Satranç koçumuz ile eksikleriniz üzerine özel ders yapın</h3>
-                        <p>Size özel hazırlanan detaylı raporu inceleyin. Satranç koçumuz ile eksikleriniz üzerine aynı bir usta ile ders yaparmış gibi özel ders yapın ve eksiklerinizi tamamlayın.</p>
+                        <h3 id="step3-title">3. Satranç koçumuz ile eksikleriniz üzerine özel ders yapın</h3>
+                        <p id="step3-desc">Size özel hazırlanan detaylı raporu inceleyin. Satranç koçumuz ile eksikleriniz üzerine aynı bir usta ile ders yaparmış gibi özel ders yapın ve eksiklerinizi tamamlayın.</p>
                     </div>
                 </div>
             </div>
@@ -1491,7 +1491,20 @@
                     'footer-about-link': 'About',
                     'footer-faq-link': 'FAQ',
                     'footer-contact-link': 'Contact',
-                    'site-title': 'Piyonist - AI-Powered Chess Coach'
+                    'site-title': 'Piyonist - AI-Powered Chess Coach',
+                    'nav-tech-infra': 'Technical Infrastructure',
+                    'nav-how-it-works-detailed': 'How the Platform Works',
+                    'tech-infra-title': 'Technical Depth & Performance',
+                    'tech-infra-description': 'The technology powering Piyonist\'s engine and our analysis accuracy.',
+                    'tech-accuracy-title': 'Accuracy and Efficiency',
+                    'how-it-works-detailed-title': 'How the Platform Works',
+                    'how-it-works-detailed-description': 'Discover your potential with Piyonist in just three simple steps.',
+                    'step1-title': '1. Play on Piyonist',
+                    'step1-desc': 'Play your games directly on our platform or upload your PGN files exported from sites like Lichess or Chess.com.',
+                    'step2-title': '2. Analyze Your Accuracy with Our Chess Engine',
+                    'step2-desc': 'Piyonist\'s powerful AI engine analyzes your game within seconds, identifying critical moments, missed opportunities, and recurring errors.',
+                    'step3-title': '3. Take Private Lessons on Your Weaknesses with Our Chess Coach',
+                    'step3-desc': 'Review your personalized report, then train with targeted lessons just like studying with a master coach to eliminate your weak points.'
                 },
                 tr: {
                     'nav-early-access-btn': 'Erken Erişime Katıl',
@@ -1530,7 +1543,20 @@
                     'footer-about-link': 'Hakkında',
                     'footer-faq-link': 'S.S.S',
                     'footer-contact-link': 'İletişim',
-                    'site-title': 'Piyonist - Yapay Zeka Destekli Satranç Koçu'
+                    'site-title': 'Piyonist - Yapay Zeka Destekli Satranç Koçu',
+                    'nav-tech-infra': 'Teknolojik Altyapı',
+                    'nav-how-it-works-detailed': 'Platformun İşleyişi',
+                    'tech-infra-title': 'Teknik Derinlik & Performans',
+                    'tech-infra-description': 'Piyonist\'in motorunu besleyen teknoloji ve analiz doğruluğumuza dair veriler.',
+                    'tech-accuracy-title': 'Doğruluk ve Verimlilik',
+                    'how-it-works-detailed-title': 'Platformun İşleyişi',
+                    'how-it-works-detailed-description': 'Piyonist ile potansiyelinizi keşfetmek sadece üç basit adımdan oluşuyor.',
+                    'step1-title': '1. Piyonist üzerinden oyun oynayın',
+                    'step1-desc': 'Oyunlarınızı doğrudan platformumuzda oynayın veya Lichess, Chess.com gibi sitelerden PGN formatında indirdiğiniz maçlarınızı sisteme yükleyin.',
+                    'step2-title': '2. Satranç motorumuz ile doğruluğunuzu analiz edin',
+                    'step2-desc': 'Piyonist\'in güçlü yapay zeka motoru, oyununuzu saniyeler içinde analiz eder. Kritik anları, kaçan fırsatları ve tekrarlayan hatalarınızı tespit eder.',
+                    'step3-title': '3. Satranç koçumuz ile eksikleriniz üzerine özel ders yapın',
+                    'step3-desc': 'Size özel hazırlanan detaylı raporu inceleyin. Satranç koçumuz ile eksikleriniz üzerine aynı bir usta ile ders yaparmış gibi özel ders yapın ve eksiklerinizi tamamlayın.'
                 }
             };
 
