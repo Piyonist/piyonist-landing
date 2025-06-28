@@ -238,7 +238,7 @@
             left: 0;
             z-index: 1000;
             padding: 1.5rem 0;
-            transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+            transition: background-color 0.3s ease, backdrop-filter 0.3s ease, padding 0.3s ease;
         }
 
         .header.scrolled {
@@ -252,13 +252,31 @@
             align-items: center;
         }
 
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
         .logo img {
             height: 35px;
+            border-radius: 20px;
+            width: 50px !important;
+            height: 50px !important;
             transition: all 0.1s linear;
         }
 
         .logo img:hover {
             filter: grayscale(60%) brightness(1.5);
+        }
+
+        .logo span {
+            color: gray;
+            text-decoration: none;
+            position: absolute;
+            transform: translate(65px, 0px);
+            font-size: 16px;
+            transition: opacity 0.3s ease;
         }
 
         .logo span:hover {
@@ -343,8 +361,9 @@
             margin-bottom: 2.5rem;
         }
 
-        .hero-buttons .btn {
-            margin: 0 1rem 0 0;
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
         }
 
         .hero-image-wrapper {
@@ -363,7 +382,7 @@
             flex-direction: column;
             align-items: center;
         }
-
+        
         #chessboard-wrapper {
             width: 400px;
             height: 400px;
@@ -517,11 +536,11 @@
 
         .features-grid div {
             transition: all 0.2s linear;
-            transition-delay: 0.5;
+            transition-delay: 0.5s;
         }
 
         .features-grid div:hover {
-            transform: scale(1.3, 1.3);
+            transform: scale(1.1); /* Hover effect is toned down slightly for better experience */
             z-index: 10;
         }
 
@@ -566,8 +585,8 @@
         }
 
         .story-image img:hover {
-            transform: scale(1.1, 1.1);
-            border: 16px solid var(--glass-border);
+            transform: scale(1.05); /* Hover effect toned down */
+            border: 12px solid var(--glass-border);
         }
 
         .story-text {
@@ -730,22 +749,20 @@
             max-height: 0;
             overflow: hidden;
             padding: 0 2rem;
-            transition: max-height 1.5s cubic-bezier(0.22, 1, 0.36, 1),
-                padding 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: max-height 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                padding 0.8s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .faq-answer p {
             color: var(--text-dark);
             line-height: 1.7;
             margin: 0;
-            padding-top: 1.5rem;
-            padding-bottom: 1.5rem;
+            padding: 1.5rem 0;
             border-top: 1px solid var(--glass-border);
         }
 
         .faq-item.active .faq-answer {
             max-height: 300px;
-            padding: 1.5rem 2rem;
         }
 
         .faq-item.active .faq-icon {
@@ -883,8 +900,8 @@
         }
 
         .details-graph img:hover {
-            transform: scale(1.1, 1.1);
-            border: 16px solid var(--glass-border);
+            transform: scale(1.05); /* Hover effect toned down */
+            border: 12px solid var(--glass-border);
         }
 
         .step-cards-container,
@@ -895,7 +912,7 @@
             gap: 2rem;
             margin-top: 4rem;
         }
-
+        
         .step-card,
         .team-member-card,
         .roadmap-item {
@@ -934,48 +951,12 @@
             padding-left: 1.5rem;
         }
 
-        .join-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-            max-width: 600px;
-            margin: 2rem auto 0;
-        }
-
-        .join-form input,
-        .join-form textarea {
-            width: 100%;
-            padding: 14px 20px;
-            border-radius: 12px;
-            border: 1px solid var(--glass-border);
-            background-color: var(--glass-bg);
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-        }
-
-        .join-form input::placeholder,
-        .join-form textarea::placeholder {
-            color: var(--text-dark);
-        }
-
-        .join-form input:focus,
-        .join-form textarea:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-        }
-
-        .join-form textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
+        /* ============================================== */
+        /* ============== RESPONSIVE STYLES ============= */
+        /* ============================================== */
+        
+        /* For Tablets (up to 992px) */
         @media (max-width: 992px) {
-            .story-content {
-                flex-direction: column;
-            }
-
             .hero-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -984,38 +965,105 @@
             .hero-content {
                 text-align: center;
             }
-
-            .hero-content h1 {
-                font-size: 2.8rem;
-            }
-
+            
             .hero-buttons {
                 justify-content: center;
             }
 
             .hero-image-wrapper {
                 margin-top: 3rem;
+                display: flex;
+                justify-content: center;
+            }
+            
+            #chessboard-wrapper {
+                width: 320px;
+                height: 320px;
+                transform: rotateX(0deg) rotateZ(0deg);
+            }
+            .hero-image-card:hover #chessboard-wrapper {
+                 transform: rotateX(0deg) rotateZ(0deg) scale(1.05);
             }
 
-            .hero-image-card,
-            #chessboard-wrapper {
-                transform: rotateX(0deg) rotateZ(0deg);
+            .piece {
+                font-size: 2rem;
+            }
+
+            .story-content {
+                flex-direction: column;
+            }
+
+            .logo span {
+                 transform: translate(60px, 0px);
             }
         }
 
+        /* For Mobile Phones (up to 768px) */
         @media (max-width: 768px) {
+            html {
+                scroll-padding-top: 80px;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+
+            .header {
+                padding: 1rem 0;
+            }
+
+            .logo span {
+                display: none; /* Hide brand name text on small screens */
+            }
+
+            .hero-section {
+                padding-top: 120px;
+                padding-bottom: 80px;
+            }
+
             .hero-content h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
 
             .hero-content p {
                 font-size: 1rem;
             }
 
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-buttons .btn {
+                 width: 100%;
+                 max-width: 300px;
+            }
+             #chessboard-wrapper {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+                aspect-ratio: 1/1; /* Ensure it remains a square */
+            }
+            .piece {
+                font-size: 1.8rem;
+            }
+            .sponsor-logos img{
+                height: 30px;
+            }
+            .sponsor-logos {
+                gap: 2rem;
+            }
+
+            .features-section, .story-section, .cta-section, .faq-section, .details-section-content {
+                padding: 4rem 0;
+            }
+
             .section-title h2,
             .story-text h2,
-            .cta-content h2 {
-                font-size: 2rem;
+            .cta-content h2,
+            .details-text h3 {
+                font-size: 1.8rem;
+            }
+            .section-title p{
+                 font-size: 1rem;
             }
 
             .features-grid,
@@ -1023,6 +1071,16 @@
             .team-cards-container,
             .roadmap-container {
                 grid-template-columns: 1fr;
+            }
+            .features-grid div:hover {
+                 transform: scale(1.05);
+            }
+
+            .glass-card {
+                padding: 1.5rem;
+            }
+             .faq-question {
+                 padding: 1rem 1.5rem;
             }
 
             .cta-form {
@@ -1034,7 +1092,16 @@
                 width: 100%;
                 max-width: 350px;
             }
-
+            .cta-form button {
+                 width: 100%;
+                 max-width: 350px;
+            }
+            .details-grid{
+                 grid-template-columns: 1fr;
+            }
+            .footer {
+                padding: 3rem 0;
+            }
             .footer-content {
                 flex-direction: column;
                 text-align: center;
@@ -1060,13 +1127,9 @@
     <header class="header">
         <div class="container">
             <nav class="navbar">
-                <a href="https://www.linkedin.com/company/piyonist-satranc?trk=public_post_feed-actor-name"
-                    class="logo">
-                    <img style="border-radius: 20px; width: 50px !important; height: 50px !important;"
-                        src="images/piyonist-logo.jpeg" alt="Piyonist Logo">
-                    <span id="nav-brand"
-                        style="color: gray;text-decoration: none;position: absolute;transform: translate(20px,10px);font-size: 16px;">Piyonist
-                        Satranç</span>
+                <a href="https://www.linkedin.com/company/piyonist-satranc" class="logo">
+                    <img style="width: 50px; height: 50px;" src="images/piyonist-logo.jpeg" alt="Piyonist Logo">
+                    <span id="nav-brand">Piyonist Satranç</span>
                 </a>
                 <div class="navbar-right-items">
                     <a href="#cta" class="btn btn-secondary" id="nav-early-access-btn">Erken Erişime Katıl</a>
@@ -1092,8 +1155,7 @@
                             eğitimlerle oyununuzu zirveye taşıyın.</p>
                         <div class="hero-buttons">
                             <a href="#cta" class="btn btn-primary" id="hero-early-access-btn">Erken Erişime Katıl</a>
-                            <a href="#features" class="btn btn-secondary" id="hero-how-it-works-btn">Nasıl Çalışır?
-                                ↓</a>
+                            <a href="#features" class="btn btn-secondary" id="hero-how-it-works-btn">Nasıl Çalışır? ↓</a>
                         </div>
                     </div>
                     <div class="hero-image-wrapper fade-in">
@@ -1116,9 +1178,9 @@
             <div class="container text-center">
                 <h3 class="fade-in" id="sponsors-title">TÜRKİYE'NİN GELECEĞİNE GÜVENENLER</h3>
                 <div class="sponsor-logos fade-in">
-                    <img style="width: 220px; height: 220px;" src="images/piyonist-meblogo.svg"
+                    <img style="width: 180px; height: auto;" src="images/piyonist-meblogo.svg"
                         alt="Milli Eğitim Bakanlığı Logosu">
-                    <img style="width: 220px; height: 220px;" src="images/piyonist-tsflogo.png"
+                    <img style="width: 180px; height: auto;" src="images/piyonist-tsflogo.png"
                         alt="Türkiye Satranç Federasyonu Logosu">
                 </div>
             </div>
@@ -1284,8 +1346,7 @@
                         </ul>
                     </div>
                     <div class="details-graph">
-                        <img src="images/piyonist-chesscom.png"
-                            alt="Yapay Zeka Doğruluk Grafiği">
+                        <img src="images/piyonist-chesscom.png" alt="Yapay Zeka Doğruluk Grafiği">
                     </div>
                 </div>
             </div>
@@ -1324,8 +1385,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-left">
-                    <img style="border-radius: 20px;" src="images/piyonist-logo.jpeg" alt="Piyonist Beyaz Logo"
-                        class="footer-logo">
+                    <img style="border-radius: 20px;" src="images/piyonist-logo.jpeg" alt="Piyonist Beyaz Logo" class="footer-logo">
                     <p id="footer-text">© 2024 Piyonist. Tüm hakları saklıdır.<br>Türkiye'nin genç beyinleri tarafından
                         geliştirilmiştir. 🇹🇷</p>
                 </div>
@@ -1335,10 +1395,9 @@
                     <span id="tlfnmr">Email : piyonistsatranc2025@gmail.com</span>
                     <a href="#contact" class="no-action" id="footer-contact-link">İletişim</a>
                     <div class="social-icons">
-                        <a href="https://x.com/PiyonistSatranc"><i class="fab fa-x"></i></a>
+                        <a href="https://x.com/PiyonistSatranc"><i class="fab fa-x-twitter"></i></a>
                         <a href="https://www.instagram.com/piyonist.satranc/"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/company/piyonist-satranc"><i
-                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.linkedin.com/company/piyonist-satranc"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
@@ -1415,7 +1474,6 @@
                     }
                 });
             }
-
 
             document.querySelectorAll('.no-action').forEach(link => {
                 link.addEventListener('click', (event) => event.preventDefault());
