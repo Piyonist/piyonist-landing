@@ -8,7 +8,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@500&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="icon" href="images/piyonist-icon.ico" type="image/x-icon">
@@ -23,6 +25,13 @@
             --text-dark: #94a3b8;
             --glass-bg: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.1);
+            --glow-purple: #8a2be2;
+        }
+
+        @property --a {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
         }
 
         * {
@@ -56,6 +65,8 @@
             position: relative;
             transition: background-color 0.8s ease-in-out;
             user-select: none;
+            --glow-b: 4px;
+            --glow-m: 2;
         }
 
         .aurora-bg {
@@ -281,8 +292,8 @@
             transition: opacity 0.3s ease;
         }
 
-        .logo span:hover {
-            filter: grayscale(100%) brightness(1.5);
+        .logo span:hover #nav-brand {
+            background: -webkit-linear-gradient(left ,#41b4f2, #710cc4);
         }
 
         .language-selector {
@@ -303,7 +314,8 @@
 
         .language-selector option {
             color: #000;
-            background-color: #f0f0f0;
+            background-color: #0f3fd2;
+            border: 0px solid transparent;
         }
 
         .navbar-right-items {
@@ -384,7 +396,7 @@
             flex-direction: column;
             align-items: center;
         }
-        
+
         #chessboard-wrapper {
             width: 400px;
             height: 400px;
@@ -566,6 +578,7 @@
 
         .story-section {
             padding: 6rem 0;
+            position: relative;
         }
 
         .story-content {
@@ -576,23 +589,271 @@
 
         .story-image {
             flex: 1;
+            position: relative;
+            cursor: pointer;
+            border-radius: 22px;
+            padding: 10px;
+            --l: #3b82f67f, #60a5fa7f, var(--glow-purple)7f, #3b82f67f;
+            background: repeating-conic-gradient(from var(--a, 0deg), var(--l)) border-box;
+            filter: url(#glow-1);
+            animation: rotate-glow 3s linear infinite;
+        }
+
+        @keyframes rotate-glow {
+            to {
+                --a: 1turn
+            }
         }
 
         .story-image img {
             width: 100%;
             border-radius: 12px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border: 10px solid var(--glass-border);
             transition: all 0.2s linear;
+            position: relative;
+            z-index: 2;
+            scale: 0.95;
         }
 
-        .story-image img:hover {
+        .story-image::after {
+            content: attr(data-hover-text);
+            position: absolute;
+            top: 105px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 3;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .story-image:hover::after {
+            opacity: 1;
+        }
+
+        .story-image:hover img {
             transform: scale(1.05);
-            border: 12px solid var(--glass-border);
+        }
+
+        .story-content-wrapper {
+            flex: 1;
+            position: relative;
+            min-height: 450px;
+        }
+
+        .story-text,
+        .story-team-reveal {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
         .story-text {
-            flex: 1;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .story-content.team-view-active .story-text {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+            position: absolute;
+        }
+
+        .story-team-reveal {
+            opacity: 0;
+            transform: scale(1.05);
+            pointer-events: none;
+            position: absolute;
+        }
+
+        .story-content.team-view-active .story-team-reveal {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+            position: relative;
+        }
+
+        #team-reveal-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            scale: 1.7;
+        }
+
+        .team-members-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem 2rem;
+            align-content: center;
+        }
+
+        .team-member-entry {
+            width: 100%;
+            height: 60px;
+            transition: transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .story-content.team-view-active .team-member-entry {
+            animation: reveal-entry 0.8s forwards;
+        }
+
+        .team-member-entry:hover {
+            transform: scale(1.05);
+        }
+
+        .signature-path {
+            stroke-width: 4px;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: stroke-width 1.5s ease, filter 1.5s ease;
+        }
+
+        .team-member-entry:hover .signature-path {
+            stroke-width: 3px;
+            filter: drop-shadow(0 0 5px currentColor);
+        }
+
+        .text-on-path {
+            fill: var(--text-dark);
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.5em;
+            font-weight: 500;
+            transition: fill 0.3s ease, filter 0.3s ease;
+        }
+
+        .team-member-entry:hover .text-on-path {
+            fill: var(--text-light);
+            filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+        }
+
+        .story-content.team-view-active .signature-path {
+            animation:
+                draw-line 1.5s ease-out forwards,
+                animate-line-color 1s linear infinite alternate;
+        }
+
+        @keyframes reveal-entry {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes draw-line {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes animate-line-color {
+            0% {
+                stroke: var(--primary-blue);
+            }
+
+            50% {
+                stroke: var(--light-blue);
+            }
+
+            100% {
+                stroke: var(--glow-purple);
+            }
+        }
+
+        .team-members-grid .team-member-entry:nth-child(1) {
+            animation-delay: 0.0s;
+        }
+
+        .team-members-grid .team-member-entry:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .team-members-grid .team-member-entry:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .team-members-grid .team-member-entry:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .team-members-grid .team-member-entry:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
+        .team-members-grid .team-member-entry:nth-child(6) {
+            animation-delay: 0.5s;
+        }
+
+        .team-members-grid .team-member-entry:nth-child(7) {
+            animation-delay: 0.6s;
+        }
+
+        .team-members-grid .team-member-entry:nth-child(8) {
+            animation-delay: 0.7s;
+        }
+
+        .team-members-grid .team-member-entry:nth-child(9) {
+            animation-delay: 0.8s;
+        }
+
+        .team-members-grid .team-member-entry:nth-child(10) {
+            animation-delay: 0.9s;
+        }
+
+        .team-members-grid .team-member-entry:nth-child(11) {
+            animation-delay: 1.0s;
+        }
+
+        .team-members-grid .team-member-entry:nth-child(12) {
+            animation-delay: 1.1s;
+        }
+
+        .team-members-grid .team-member-entry:nth-child(13) {
+            animation-delay: 1.2s;
+        }
+
+        .team-members-grid .team-member-entry:nth-child(14) {
+            animation-delay: 1.3s;
+        }
+
+        .story-content.team-view-active .team-member-entry .signature-path,
+        .story-content.team-view-active .team-member-entry .text-on-path {
+            animation-delay: inherit;
+        }
+
+        .story-content.team-view-active .team-member-entry .text-on-path {
+            animation-name: fade-in-text;
+            animation-duration: 1.5s;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fade-in-text {
+            0% {
+                fill-opacity: 0;
+            }
+
+            50% {
+                fill-opacity: 0;
+            }
+
+            100% {
+                fill-opacity: 1;
+            }
         }
 
         .story-text h2 {
@@ -914,7 +1175,7 @@
             gap: 2rem;
             margin-top: 4rem;
         }
-        
+
         .step-card,
         .team-member-card,
         .roadmap-item {
@@ -953,7 +1214,18 @@
             padding-left: 1.5rem;
         }
 
-
+        #hero-title {
+            font-size: 3.5rem;
+            background: -webkit-linear-gradient(#710cc4, #41b4f2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        #nav-brand{
+            font-size: 3.5rem;
+            background: -webkit-linear-gradient(right top,#41b4f2, #710cc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
         @media (max-width: 992px) {
             .hero-grid {
                 grid-template-columns: 1fr;
@@ -963,7 +1235,7 @@
             .hero-content {
                 text-align: center;
             }
-            
+
             .hero-buttons {
                 justify-content: center;
             }
@@ -973,14 +1245,15 @@
                 display: flex;
                 justify-content: center;
             }
-            
+
             #chessboard-wrapper {
                 width: 320px;
                 height: 320px;
                 transform: rotateX(0deg) rotateZ(0deg);
             }
+
             .hero-image-card:hover #chessboard-wrapper {
-                 transform: rotateX(0deg) rotateZ(0deg) scale(1.05);
+                transform: rotateX(0deg) rotateZ(0deg) scale(1.05);
             }
 
             .piece {
@@ -991,16 +1264,45 @@
                 flex-direction: column;
             }
 
+            .story-content-wrapper {
+                min-height: auto;
+                width: 100%;
+                overflow: visible;
+                margin-top: 2rem;
+            }
+
+            .story-text,
+            .story-team-reveal {
+                position: relative;
+                transition: opacity 0.6s ease, max-height 0.8s ease;
+                max-height: 1000px;
+                overflow: hidden;
+            }
+
+            .story-text.hidden,
+            .story-team-reveal.hidden {
+                max-height: 0;
+                opacity: 0;
+                margin: 0;
+                padding: 0;
+            }
+
+            .team-members-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
             .logo span {
-                 transform: translate(60px, 0px);
+                transform: translate(60px, 0px);
             }
         }
 
-     
+
         @media (max-width: 768px) {
             html {
                 scroll-padding-top: 80px;
             }
+
             .container {
                 padding: 0 1rem;
             }
@@ -1010,7 +1312,7 @@
             }
 
             .logo span {
-                display: none; 
+                display: none;
             }
 
             .hero-section {
@@ -1030,27 +1332,36 @@
                 flex-direction: column;
                 align-items: center;
             }
+
             .hero-buttons .btn {
-                 width: 100%;
-                 max-width: 300px;
+                width: 100%;
+                max-width: 300px;
             }
-             #chessboard-wrapper {
+
+            #chessboard-wrapper {
                 width: 100%;
                 max-width: 300px;
                 height: auto;
-                aspect-ratio: 1/1; 
+                aspect-ratio: 1/1;
             }
+
             .piece {
                 font-size: 1.8rem;
             }
-            .sponsor-logos img{
+
+            .sponsor-logos img {
                 height: 30px;
             }
+
             .sponsor-logos {
                 gap: 2rem;
             }
 
-            .features-section, .story-section, .cta-section, .faq-section, .details-section-content {
+            .features-section,
+            .story-section,
+            .cta-section,
+            .faq-section,
+            .details-section-content {
                 padding: 4rem 0;
             }
 
@@ -1060,8 +1371,18 @@
             .details-text h3 {
                 font-size: 1.8rem;
             }
-            .section-title p{
-                 font-size: 1rem;
+
+            .section-title p {
+                font-size: 1rem;
+            }
+
+            #team-reveal-title {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .text-on-path {
+                font-size: 1.1rem;
             }
 
             .features-grid,
@@ -1070,15 +1391,17 @@
             .roadmap-container {
                 grid-template-columns: 1fr;
             }
+
             .features-grid div:hover {
-                 transform: scale(1.05);
+                transform: scale(1.05);
             }
 
             .glass-card {
                 padding: 1.5rem;
             }
-             .faq-question {
-                 padding: 1rem 1.5rem;
+
+            .faq-question {
+                padding: 1rem 1.5rem;
             }
 
             .cta-form {
@@ -1090,16 +1413,20 @@
                 width: 100%;
                 max-width: 350px;
             }
+
             .cta-form button {
-                 width: 100%;
-                 max-width: 350px;
+                width: 100%;
+                max-width: 350px;
             }
-            .details-grid{
-                 grid-template-columns: 1fr;
+
+            .details-grid {
+                grid-template-columns: 1fr;
             }
+
             .footer {
                 padding: 3rem 0;
             }
+
             .footer-content {
                 flex-direction: column;
                 text-align: center;
@@ -1114,6 +1441,26 @@
 </head>
 
 <body>
+    <svg width="0" height="0" aria-hidden="true" style="position: fixed;">
+        <filter id="glow-1" x="-.25" y="-.25" width="1.5" height="1.5">
+            <feComponentTransfer in="SourceGraphic" result="grad">
+                <feFuncA type="table" tableValues="0 2 0"></feFuncA>
+            </feComponentTransfer>
+            <feMorphology operator="dilate" radius="calc(.5 * var(--glow-b))"></feMorphology>
+            <feGaussianBlur stdDeviation="var(--glow-b)" result="glow"></feGaussianBlur>
+            <feTurbulence type="fractalNoise" baseFrequency="7.13"></feTurbulence>
+            <feDisplacementMap in="glow" scale="calc(var(--glow-m) * var(--glow-b))" yChannelSelector="R">
+            </feDisplacementMap>
+            <feComponentTransfer>
+                <feFuncA type="linear" slope=".8"></feFuncA>
+            </feComponentTransfer>
+            <feBlend in="grad" result="out"></feBlend>
+            <feComponentTransfer in="SourceGraphic">
+                <feFuncA type="table" tableValues="0 0 1"></feFuncA>
+            </feComponentTransfer>
+            <feBlend in2="out"></feBlend>
+        </filter>
+    </svg>
     <div class="global-spotlight"></div>
 
     <div class="aurora-bg">
@@ -1126,8 +1473,9 @@
         <div class="container">
             <nav class="navbar">
                 <a href="https://www.linkedin.com/company/piyonist-satranc" class="logo">
-                    <img style="width: 50px; height: 50px;backdrop-filter:blur(1px);" src="images/piyonist-logo1.png" alt="Piyonist Logo">
-                    <span id="nav-brand">Piyonist Satranç</span>
+                    <img style="width: 50px; height: 50px;backdrop-filter:blur(1px);" src="images/piyonist-logo1.png"
+                        alt="Piyonist Logo">
+                    <span id="nav-brand" style="font-size: 19px;">Piyonist Satranç</span>
                 </a>
                 <div class="navbar-right-items">
                     <a href="#cta" class="btn btn-secondary" id="nav-early-access-btn">Erken Erişime Katıl</a>
@@ -1149,11 +1497,11 @@
                     <div class="hero-content fade-in">
                         <h1 id="hero-title">Satrançta Ustalığa Giden Yol: <br> Kişisel Yapay Zeka Koçunuz.</h1>
                         <p id="hero-description">Piyonist ile hamlelerinizi gerçek zamanlı analiz edin, stratejik
-                            hatalarınızı anında keşfedin ve potansiyelinizi ortaya çıkaracak kişiselleştirilmiş
-                            eğitimlerle oyununuzu zirveye taşıyın.</p>
+                            hatalarınızı anında keşfedin ve poteyle eğitimlerle oyununuzu zirveye taşıyın.</p>
                         <div class="hero-buttons">
                             <a href="#cta" class="btn btn-primary" id="hero-early-access-btn">Erken Erişime Katıl</a>
-                            <a href="#features" class="btn btn-secondary" id="hero-how-it-works-btn">Nasıl Çalışır? ↓</a>
+                            <a href="#features" class="btn btn-secondary" id="hero-how-it-works-btn">Nasıl Çalışır?
+                                ↓</a>
                         </div>
                     </div>
                     <div class="hero-image-wrapper fade-in">
@@ -1214,19 +1562,177 @@
 
         <section id="story" class="story-section">
             <div class="container">
-                <div class="story-content">
-                    <div class="story-image fade-in">
+                <div id="story-content" class="story-content">
+                    <div id="story-image-clickable" class="story-image fade-in"
+                        data-hover-text="Ekibi Keşfetmek İçin Tıkla">
                         <img src="images/piyonist-sunum.jpeg" alt="Piyonist Geliştirici Ekibi">
                     </div>
-                    <div class="story-text fade-in">
-                        <h2 id="story-title">Bir Hayalden Global Bir Hedefe</h2>
-                        <p id="story-p1">Piyonist, Türkiye'nin dört bir yanından gelen, teknoloji ve satranç tutkunu
-                            lise öğrencilerinden oluşan güçlü bir ekibin hayalidir. Amacımız, sadece bir satranç motoru
-                            geliştirmek değil, aynı zamanda yapay zekâ teknolojilerini satranç eğitimiyle birleştirerek
-                            ülkemizin bu alandaki gelişimine katkıda bulunmaktır.</p>
-                        <p id="story-p2">Türkiye Satranç Federasyonu gibi değerli
-                            kurumların desteğiyle, her yaştan satranç oyuncusunun kendi potansiyelinin zirvesine
-                            ulaşmasına yardımcı olmayı hedefliyoruz.</p>
+
+                    <div class="story-content-wrapper fade-in">
+                        <div class="story-text">
+                            <h2 id="story-title">Bir Hayalden Global Bir Hedefe</h2>
+                            <p id="story-p1">Piyonist, Türkiye'nin dört bir yanından gelen, teknoloji ve satranç tutkunu
+                                lise öğrencilerinden oluşan güçlü bir ekibin hayalidir. Amacımız, sadece bir satranç
+                                motoru
+                                geliştirmek değil, aynı zamanda yapay zekâ teknolojilerini satranç eğitimiyle
+                                birleştirerek
+                                ülkemizin bu alandaki gelişimine katkıda bulunmaktır.</p>
+                            <p id="story-p2">Türkiye Satranç Federasyonu gibi değerli
+                                kurumların desteğiyle, her yaştan satranç oyuncusunun kendi potansiyelinin zirvesine
+                                ulaşmasına yardımcı olmayı hedefliyoruz.</p>
+                        </div>
+
+                        <div class="story-team-reveal">
+                            <h3 id="team-reveal-title">Biz Kimiz ?</h3>
+                            <div class="team-members-grid">
+                                <div class="team-member-entry">
+                                    <svg width="100%" height="100%" viewBox="0 0 500 60">
+                                        <path id="path-1" class="signature-path"
+                                            data-original-d="M 10 30 Q 250 50, 490 30"></path>
+                                        <text class="text-on-path" id="team-member-1" dy="-14">
+                                            <textPath href="#path-1" startOffset="50%" text-anchor="middle">Furkan Eren
+                                                | Proje Lideri</textPath>
+                                        </text>
+                                    </svg>
+                                </div>
+                                <div class="team-member-entry">
+                                    <svg width="100%" height="100%" viewBox="0 0 500 60">
+                                        <path id="path-2" class="signature-path"
+                                            data-original-d="M 10 30 C 150 10, 350 50, 490 30"></path>
+                                        <text class="text-on-path" style="font-size:1.4rem;" id="team-member-2"
+                                            dy="-14">
+                                            <textPath href="#path-2" startOffset="50%" text-anchor="middle">Ahmet Erdem
+                                                Pamuk | Baş Geliştirici</textPath>
+                                        </text>
+                                    </svg>
+                                </div>
+                                <div class="team-member-entry">
+                                    <svg width="100%" height="100%" viewBox="0 0 500 60">
+                                        <path id="path-3" class="signature-path"
+                                            data-original-d="M 10 30 C 150 10, 350 50, 490 30"></path>
+                                        <text class="text-on-path" style="font-size:1.4rem;" id="team-member-3"
+                                            dy="-14">
+                                            <textPath href="#path-3" startOffset="50%" text-anchor="middle">Şuayp Talha
+                                                Kocabay | AI Geliştirici</textPath>
+                                        </text>
+                                    </svg>
+                                </div>
+                                <div class="team-member-entry">
+                                    <svg width="100%" height="100%" viewBox="0 0 500 60">
+                                        <path id="path-4" class="signature-path" data-original-d="M 10 30 Q 490 30">
+                                        </path>
+                                        <text class="text-on-path" id="team-member-4" dy="-14">
+                                            <textPath href="#path-4" startOffset="50%" text-anchor="middle">Emir Kaan
+                                                Özdemir | AI Geliştirici</textPath>
+                                        </text>
+                                    </svg>
+                                </div>
+                                <div class="team-member-entry">
+                                    <svg width="100%" height="100%" viewBox="0 0 500 60">
+                                        <path id="path-5" class="signature-path"
+                                            data-original-d="M 10 30 Q 250 50, 490 30"></path>
+                                        <text class="text-on-path" style="font-size:1.4rem;" id="team-member-5"
+                                            dy="-14">
+                                            <textPath href="#path-5" startOffset="50%" text-anchor="middle">Muhammed
+                                                Ömer Erkoç | AI Geliştirici</textPath>
+                                        </text>
+                                    </svg>
+                                </div>
+                                <div class="team-member-entry">
+                                    <svg width="100%" height="100%" viewBox="0 0 500 60">
+                                        <path id="path-6" class="signature-path"
+                                            data-original-d="M 10 30 C 150 10, 350 50, 490 30"></path>
+                                        <text class="text-on-path" style="font-size:1.2rem;" id="team-member-6"
+                                            dy="-14">
+                                            <textPath href="#path-6" startOffset="50%" text-anchor="middle">Hasan Talha
+                                                Güzeller | AI/WEB Geliştirici</textPath>
+                                        </text>
+                                    </svg>
+                                </div>
+                                <div class="team-member-entry">
+                                    <svg width="100%" height="100%" viewBox="0 0 500 60">
+                                        <path id="path-7" class="signature-path"
+                                            data-original-d="M 10 30 C 150 10, 350 50, 490 30"></path>
+                                        <text class="text-on-path" style="font-size:1.3rem" id="team-member-7" dy="-14">
+                                            <textPath href="#path-7" startOffset="50%" text-anchor="middle">Arda Doruk
+                                                Kaytancı | WEB Geliştirici</textPath>
+                                        </text>
+                                    </svg>
+                                </div>
+                                <div class="team-member-entry">
+                                    <svg width="100%" height="100%" viewBox="0 0 500 60">
+                                        <path id="path-8" class="signature-path"
+                                            data-original-d="M 10 30 Q 250 50, 490 30"></path>
+                                        <text class="text-on-path" style="font-size:1.4rem;" id="team-member-8"
+                                            dy="-14">
+                                            <textPath href="#path-8" startOffset="50%" text-anchor="middle">Emirhan Etem
+                                                Alkan | WEB Geliştirici</textPath>
+                                        </text>
+                                    </svg>
+                                </div>
+                                <div class="team-member-entry">
+                                    <svg width="100%" height="100%" viewBox="0 0 500 60">
+                                        <path id="path-9" class="signature-path"
+                                            data-original-d="M 10 30 C 150 10, 350 50, 490 30"></path>
+                                        <text class="text-on-path" style="font-size:1.4rem;" id="team-member-9"
+                                            dy="-14">
+                                            <textPath href="#path-9" startOffset="50%" text-anchor="middle">Hamit Tuğrul
+                                                Arslan | WEB Geliştirici</textPath>
+                                        </text>
+                                    </svg>
+                                </div>
+                                <div class="team-member-entry">
+                                    <svg width="100%" height="100%" viewBox="0 0 500 60">
+                                        <path id="path-10" class="signature-path"
+                                            data-original-d="M 10 30 C 150 10, 350 50, 490 30"></path>
+                                        <text class="text-on-path" id="team-member-10" dy="-14">
+                                            <textPath href="#path-10" startOffset="50%" text-anchor="middle">Adil Sevim
+                                                | Pazarlama</textPath>
+                                        </text>
+                                    </svg>
+                                </div>
+                                <div class="team-member-entry">
+                                    <svg width="100%" height="100%" viewBox="0 0 500 60">
+                                        <path id="path-11" class="signature-path"
+                                            data-original-d="M 10 30 Q 250 50, 490 30"></path>
+                                        <text class="text-on-path" id="team-member-11" dy="-14">
+                                            <textPath href="#path-11" startOffset="50%" text-anchor="middle">Umut Kerem
+                                                Özen | Pazarlama</textPath>
+                                        </text>
+                                    </svg>
+                                </div>
+                                <div class="team-member-entry">
+                                    <svg width="100%" height="100%" viewBox="0 0 500 60">
+                                        <path id="path-12" class="signature-path" data-original-d="M 10 30 C 490 30">
+                                        </path>
+                                        <text class="text-on-path" id="team-member-12" dy="-14">
+                                            <textPath href="#path-12" startOffset="50%" text-anchor="middle">Ayşe Sude
+                                                Erzurumlu | Pazarlama</textPath>
+                                        </text>
+                                    </svg>
+                                </div>
+                                <div class="team-member-entry">
+                                    <svg width="100%" height="100%" viewBox="0 0 500 60">
+                                        <path id="path-13" class="signature-path"
+                                            data-original-d="M 10 30 C 150 10, 350 50, 490 30"></path>
+                                        <text class="text-on-path" id="team-member-13" dy="-14">
+                                            <textPath href="#path-13" startOffset="50%" text-anchor="middle">İlknur
+                                                Yaren Karakoç | Pazarlama</textPath>
+                                        </text>
+                                    </svg>
+                                </div>
+                                <div class="team-member-entry">
+                                    <svg width="100%" height="100%" viewBox="0 0 500 60">
+                                        <path id="path-14" class="signature-path"
+                                            data-original-d="M 10 30 Q 250 50, 490 30"></path>
+                                        <text class="text-on-path" id="team-member-14" dy="-14">
+                                            <textPath href="#path-14" startOffset="50%" text-anchor="middle">Eymen
+                                                Eroğlu | Pazarlama</textPath>
+                                        </text>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1316,7 +1822,8 @@
             </button>
             <div id="details-nav-container" class="details-nav">
                 <a id="nav-tech-infra" href="#tech-infra" class="btn btn-nav-details">Teknolojik Altyapı</a>
-                <a id="nav-how-it-works-detailed" href="#how-it-works-detailed" class="btn btn-nav-details">Platformun İşleyişi</a>
+                <a id="nav-how-it-works-detailed" href="#how-it-works-detailed" class="btn btn-nav-details">Platformun
+                    İşleyişi</a>
             </div>
         </div>
     </section>
@@ -1326,19 +1833,23 @@
             <div class="container">
                 <div class="section-title text-center">
                     <h2 id="tech-infra-title">Teknik Derinlik & Performans</h2>
-                    <p id="tech-infra-description">Piyonist'in motorunu besleyen teknoloji ve analiz doğruluğumuza dair veriler.</p>
+                    <p id="tech-infra-description">Piyonist'in motorunu besleyen teknoloji ve analiz doğruluğumuza dair
+                        veriler.</p>
                 </div>
                 <div class="details-grid">
                     <div class="details-text">
                         <h3 id="tech-accuracy-title">Doğruluk ve Verimlilik</h3>
-                        <p>Geliştirdiğimiz satranç motoru, milyonlarca hamlelik dev bir veri seti üzerinde eğitilmiştir.
+                        <p id="tech-accuracy-desc">Geliştirdiğimiz satranç motoru, milyonlarca hamlelik dev bir veri
+                            seti üzerinde eğitilmiştir.
                             Bu sayede, standart oyun pozisyonlarında %98'in üzerinde bir doğruluk oranıyla en iyi
                             hamleyi tahmin edebilmektedir. Stratejik hataları tespit etme algoritmamız, sadece bariz
                             kayıpları değil, uzun vadedeki pozisyonel zayıflıkları da büyük bir isabetle belirler.</p>
                         <ul>
-                            <li><i class="fas fa-check-circle"></i> Milyonlarca oyun üzerinden derin öğrenme.</li>
-                            <li><i class="fas fa-check-circle"></i> Optimize edilmiş arama algoritmaları.</li>
-                            <li><i class="fas fa-check-circle"></i> Kişiye özel zayıflık tespiti.</li>
+                            <li id="tech-list-1"><i class="fas fa-check-circle"></i> Milyonlarca oyun üzerinden derin
+                                öğrenme.</li>
+                            <li id="tech-list-2"><i class="fas fa-check-circle"></i> Optimize edilmiş arama
+                                algoritmaları.</li>
+                            <li id="tech-list-3"><i class="fas fa-check-circle"></i> Kişiye özel zayıflık tespiti.</li>
                         </ul>
                     </div>
                     <div class="details-graph">
@@ -1352,25 +1863,30 @@
             <div class="container text-center">
                 <div class="section-title">
                     <h2 id="how-it-works-detailed-title">Platformun İşleyişi</h2>
-                    <p id="how-it-works-detailed-description">Piyonist ile potansiyelinizi keşfetmek sadece üç basit adımdan oluşuyor.</p>
+                    <p id="how-it-works-detailed-description">Piyonist ile potansiyelinizi keşfetmek sadece üç basit
+                        adımdan oluşuyor.</p>
                 </div>
                 <div class="step-cards-container">
                     <div class="step-card glass-card">
                         <i class="fas fa-upload"></i>
                         <h3 id="step1-title">1. Piyonist üzerinden oyun oynayın</h3>
-                        <p id="step1-desc">Oyunlarınızı doğrudan platformumuzda oynayın veya Lichess, Chess.com gibi sitelerden PGN
+                        <p id="step1-desc">Oyunlarınızı doğrudan platformumuzda oynayın veya Lichess, Chess.com gibi
+                            sitelerden PGN
                             formatında indirdiğiniz maçlarınızı sisteme yükleyin.</p>
                     </div>
                     <div class="step-card glass-card">
                         <i class="fas fa-cogs"></i>
                         <h3 id="step2-title">2. Satranç motorumuz ile doğruluğunuzu analiz edin</h3>
-                        <p id="step2-desc">Piyonist'in güçlü yapay zeka motoru, oyununuzu saniyeler içinde analiz eder. Kritik anları,
+                        <p id="step2-desc">Piyonist'in güçlü yapay zeka motoru, oyununuzu saniyeler içinde analiz eder.
+                            Kritik anları,
                             kaçan fırsatları ve tekrarlayan hatalarınızı tespit eder.</p>
                     </div>
                     <div class="step-card glass-card">
                         <i class="fas fa-graduation-cap"></i>
                         <h3 id="step3-title">3. Satranç koçumuz ile eksikleriniz üzerine özel ders yapın</h3>
-                        <p id="step3-desc">Size özel hazırlanan detaylı raporu inceleyin. Satranç koçumuz ile eksikleriniz üzerine aynı bir usta ile ders yaparmış gibi özel ders yapın ve eksiklerinizi tamamlayın.</p>
+                        <p id="step3-desc">Size özel hazırlanan detaylı raporu inceleyin. Satranç koçumuz ile
+                            eksikleriniz üzerine aynı bir usta ile ders yaparmış gibi özel ders yapın ve eksiklerinizi
+                            tamamlayın.</p>
                     </div>
                 </div>
             </div>
@@ -1381,7 +1897,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-left">
-                    <img style="border-radius: 20px;" src="images/piyonist-logo1.png" alt="Piyonist Beyaz Logo" class="footer-logo">
+                    <img style="border-radius: 20px;" src="images/piyonist-logo1.png" alt="Piyonist Beyaz Logo"
+                        class="footer-logo">
                     <p id="footer-text">© 2024 Piyonist. Tüm hakları saklıdır.<br>Türkiye'nin genç beyinleri tarafından
                         geliştirilmiştir. 🇹🇷</p>
                 </div>
@@ -1393,7 +1910,8 @@
                     <div class="social-icons">
                         <a href="https://x.com/PiyonistSatranc"><i class="fab fa-x-twitter"></i></a>
                         <a href="https://www.instagram.com/piyonist.satranc/"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/company/piyonist-satranc"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.linkedin.com/company/piyonist-satranc"><i
+                                class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
@@ -1508,7 +2026,7 @@
                     }
                 });
             }
-            
+
             const translations = {
                 en: {
                     'nav-early-access-btn': 'Join Early Access',
@@ -1517,6 +2035,8 @@
                     'hero-description': 'Analyze your moves in real time with Piyonist, instantly discover strategic mistakes, and elevate your game with personalized training that unleashes your potential.',
                     'hero-early-access-btn': 'Join Early Access',
                     'hero-how-it-works-btn': 'How It Works? ↓',
+                    'puzzle-question': 'White to play and mate in one.',
+                    'puzzle-feedback': 'What is the correct move?',
                     'sponsors-title': "BELIEVERS IN TURKEY'S FUTURE",
                     'features-title': 'Technology Transforming Your Game',
                     'features-description': "Push the limits of your chess with Piyonist's innovative features.",
@@ -1528,7 +2048,23 @@
                     'feature3-desc': 'Piyonist suggests tailored training programs, puzzles, and strategy lessons based on your playing style and frequent mistakes.',
                     'story-title': 'From a Dream to a Global Mission',
                     'story-p1': "Piyonist is the dream of a dedicated team of high-school students from all over Turkey who love technology and chess. Our goal is not just to develop a chess engine, but to merge AI technologies with chess education and contribute to our country's advancement in this field.",
-                    'story-p2': 'With the support of the Ministry of National Education of the Republic of Turkey and the Turkish Chess Federation, we aim to help chess players of all ages reach their full potential.',
+                    'story-p2': 'With the support of valuable institutions like the Turkish Chess Federation, we aim to help chess players of all ages reach their full potential.',
+                    'story-image-hover-text': 'Click to Discover the Team',
+                    'team-reveal-title': 'Who Are We?',
+                    'team-member-1': '<textPath href="#path-1" startOffset="50%" text-anchor="middle">Furkan Eren | Project Lead</textPath>',
+                    'team-member-2': '<textPath href="#path-2" startOffset="50%" text-anchor="middle">Ahmet Erdem Pamuk | Lead Developer</textPath>',
+                    'team-member-3': '<textPath href="#path-3" startOffset="50%" text-anchor="middle">Şuayp Talha Kocabay | AI Developer</textPath>',
+                    'team-member-4': '<textPath href="#path-4" startOffset="50%" text-anchor="middle">Emir Kaan Özdemir | AI Developer</textPath>',
+                    'team-member-5': '<textPath href="#path-5" startOffset="50%" text-anchor="middle">Muhammed Ömer Erkoç | AI Developer</textPath>',
+                    'team-member-6': '<textPath href="#path-6" startOffset="50%" text-anchor="middle">Hasan Talha Güzeller | AI/WEB Developer</textPath>',
+                    'team-member-7': '<textPath href="#path-7" startOffset="50%" text-anchor="middle">Arda Doruk Kaytancı | WEB Developer</textPath>',
+                    'team-member-8': '<textPath href="#path-8" startOffset="50%" text-anchor="middle">Emirhan Etem Alkan | WEB Developer</textPath>',
+                    'team-member-9': '<textPath href="#path-9" startOffset="50%" text-anchor="middle">Hamit Tuğrul Arslan | WEB Developer</textPath>',
+                    'team-member-10': '<textPath href="#path-10" startOffset="50%" text-anchor="middle">Adil Sevim | Marketing</textPath>',
+                    'team-member-11': '<textPath href="#path-11" startOffset="50%" text-anchor="middle">Umut Kerem Özen | Marketing</textPath>',
+                    'team-member-12': '<textPath href="#path-12" startOffset="50%" text-anchor="middle">Ayşe Sude Erzurumlu | Marketing</textPath>',
+                    'team-member-13': '<textPath href="#path-13" startOffset="50%" text-anchor="middle">İlknur Yaren Karakoç | Marketing</textPath>',
+                    'team-member-14': '<textPath href="#path-14" startOffset="50%" text-anchor="middle">Eymen Eroğlu | Marketing</textPath>',
                     'cta-title': 'Ready for a New Era in Chess?',
                     'cta-description': "Join our early-access program now to witness Piyonist's development and become part of this revolution from day one.",
                     'cta-email-input': 'Enter your email address',
@@ -1548,11 +2084,17 @@
                     'footer-faq-link': 'FAQ',
                     'footer-contact-link': 'Contact',
                     'site-title': 'Piyonist - AI-Powered Chess Coach',
+                    'show-details-btn': '<i class="fas fa-chevron-down" style="margin-right: 8px;"></i> More Details',
+                    'show-details-btn-hide': '<i class="fas fa-chevron-up" style="margin-right: 8px;"></i> Hide Details',
                     'nav-tech-infra': 'Technical Infrastructure',
                     'nav-how-it-works-detailed': 'How the Platform Works',
                     'tech-infra-title': 'Technical Depth & Performance',
-                    'tech-infra-description': 'The technology powering Piyonist\'s engine and our analysis accuracy.',
+                    'tech-infra-description': 'The technology powering Piyonist\'s engine and data on our analysis accuracy.',
                     'tech-accuracy-title': 'Accuracy and Efficiency',
+                    'tech-accuracy-desc': 'The chess engine we developed has been trained on a massive dataset of millions of moves. This allows it to predict the best move with over 98% accuracy in standard game positions. Our strategic error detection algorithm identifies not only obvious blunders but also long-term positional weaknesses with high precision.',
+                    'tech-list-1': '<i class="fas fa-check-circle"></i> Deep learning over millions of games.',
+                    'tech-list-2': '<i class="fas fa-check-circle"></i> Optimized search algorithms.',
+                    'tech-list-3': '<i class="fas fa-check-circle"></i> Personalized weakness detection.',
                     'how-it-works-detailed-title': 'How the Platform Works',
                     'how-it-works-detailed-description': 'Discover your potential with Piyonist in just three simple steps.',
                     'step1-title': '1. Play on Piyonist',
@@ -1560,9 +2102,7 @@
                     'step2-title': '2. Analyze Your Accuracy with Our Chess Engine',
                     'step2-desc': 'Piyonist\'s powerful AI engine analyzes your game within seconds, identifying critical moments, missed opportunities, and recurring errors.',
                     'step3-title': '3. Take Private Lessons on Your Weaknesses with Our Chess Coach',
-                    'step3-desc': 'Review your personalized report, then train with targeted lessons just like studying with a master coach to eliminate your weak points.',
-                    'show-details-btn': '<i class="fas fa-chevron-down" style="margin-right: 8px;"></i> More Details',
-                    'show-details-btn-hide': '<i class="fas fa-chevron-up" style="margin-right: 8px;"></i> Hide Details'
+                    'step3-desc': 'Review your personalized report, then train with targeted lessons just like studying with a master coach to eliminate your weak points.'
                 },
                 tr: {
                     'nav-early-access-btn': 'Erken Erişime Katıl',
@@ -1631,6 +2171,10 @@
                         el.innerHTML = texts[id];
                     }
                 });
+                const storyImage = document.getElementById('story-image-clickable');
+                if (storyImage && texts['story-image-hover-text']) {
+                    storyImage.setAttribute('data-hover-text', texts['story-image-hover-text']);
+                }
                 document.title = texts['site-title'];
                 document.documentElement.lang = lang;
             }
@@ -1775,6 +2319,70 @@
             }
 
             playIntroAnimation();
+
+            const storyImage = document.getElementById('story-image-clickable');
+            const storyContent = document.getElementById('story-content');
+            const storyText = document.querySelector('.story-text');
+            const storyTeamReveal = document.querySelector('.story-team-reveal');
+
+            if (storyImage && storyContent && storyText && storyTeamReveal) {
+                const setupMobileToggle = () => {
+                    storyText.classList.toggle('hidden', storyContent.classList.contains('team-view-active'));
+                    storyTeamReveal.classList.toggle('hidden', !storyContent.classList.contains('team-view-active'));
+                };
+
+                storyImage.addEventListener('click', () => {
+                    const isNowTeamView = storyContent.classList.toggle('team-view-active');
+
+                    if (window.innerWidth <= 992) {
+                        setupMobileToggle();
+                    }
+
+                    if (isNowTeamView) {
+                        const allEntries = document.querySelectorAll('.team-member-entry');
+                        allEntries.forEach(entry => {
+                            const path = entry.querySelector('.signature-path');
+                            const textPath = entry.querySelector('textPath');
+                            const textLength = textPath.getComputedTextLength();
+                            const finalLength = textLength + 40;
+                            const viewBoxCenter = 250;
+
+                            const startX = viewBoxCenter - (finalLength / 2);
+                            const endX = viewBoxCenter + (finalLength / 2);
+
+                            const originalD = path.getAttribute('data-original-d');
+                            let newD;
+                            if (originalD.includes('Q')) {
+                                newD = `M ${startX} 30 Q 250 50, ${endX} 30`;
+                            } else if (originalD.includes('C')) {
+                                const controlX1 = startX + (finalLength * 0.2);
+                                const controlX2 = endX - (finalLength * 0.2);
+                                newD = `M ${startX} 30 C ${controlX1} 10, ${controlX2} 50, ${endX} 30`;
+                            } else {
+                                newD = `M ${startX} 30 L ${endX} 30`;
+                            }
+
+                            path.setAttribute('d', newD);
+                            const pathLength = path.getTotalLength();
+                            path.style.strokeDasharray = pathLength;
+                            path.style.strokeDashoffset = pathLength;
+                        });
+                    }
+                });
+
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 992) {
+                        storyText.classList.remove('hidden');
+                        storyTeamReveal.classList.remove('hidden');
+                    } else {
+                        setupMobileToggle();
+                    }
+                });
+
+                if (window.innerWidth <= 992) {
+                    storyTeamReveal.classList.add('hidden');
+                }
+            }
         });
     </script>
 </body>
