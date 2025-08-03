@@ -78,6 +78,124 @@
             --glow-m: 2;
         }
 
+        body.loading {
+            overflow: hidden;
+        }
+
+        body.loading>*:not(#loading-overlay) {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        #loading-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: var(--dark-blue);
+            z-index: 10001;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+        }
+
+        #loading-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-scene {
+            width: 200px;
+            height: 200px;
+            perspective: 1000px;
+        }
+
+        .loader-chase-path {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: orbit-rotation 2s linear infinite;
+        }
+
+        @keyframes orbit-rotation {
+            from {
+                transform: rotateY(-25deg) rotateX(60deg) rotateZ(0deg);
+            }
+
+            to {
+                transform: rotateY(-25deg) rotateX(60deg) rotateZ(360deg);
+            }
+        }
+
+        .loading-chess-piece {
+            position: absolute;
+            left: 50%;
+            transform-style: preserve-3d;
+            font-size: 5rem;
+            text-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .loading-king {
+            color: var(--text-light);
+            top: 0;
+            transform: translateX(-50%) translateY(-50%) rotateX(-60deg) rotateY(25deg);
+            animation: king-flee-bob 0.7s ease-in-out infinite alternate;
+        }
+
+        @keyframes king-flee-bob {
+            from {
+                transform: translateX(-50%) translateY(-50%) rotateX(-60deg) rotateY(25deg) translateY(-5px);
+            }
+
+            to {
+                transform: translateX(-50%) translateY(-50%) rotateX(-60deg) rotateY(25deg) translateY(5px);
+            }
+        }
+
+        .loading-queen {
+            color: var(--primary-blue);
+            filter: drop-shadow(0 0 10px var(--primary-blue));
+            bottom: 0;
+            transform: translateX(-50%) translateY(50%) rotateX(-60deg) rotateY(25deg);
+            animation: queen-lunge 1s ease-in-out infinite;
+        }
+
+        @keyframes queen-lunge {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(50%) rotateX(-60deg) rotateY(25deg) scale(1);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(50%) rotateX(-60deg) rotateY(25deg) scale(1.2);
+            }
+        }
+
+        .loading-text {
+            margin-top: 3rem;
+            color: var(--text-dark);
+            font-family: 'Roboto Mono', monospace;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fade-in-text-loader 1s 0.5s forwards;
+        }
+
+        @keyframes fade-in-text-loader {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 0.8;
+                transform: translateY(0);
+            }
+        }
+
+        
+
         .aurora-bg {
             position: fixed;
             top: 0;
@@ -427,6 +545,7 @@
             width: 100%;
             height: 100%;
             border: 10px solid var(--glass-border);
+            animation: animate-border-color 1s linear infinite alternate;
         }
 
         .square {
@@ -559,7 +678,7 @@
 
         .features-grid div {
             transition: all 0.2s linear;
-            transition-delay: 0.5s;
+            
         }
 
         .features-grid div:hover {
@@ -780,6 +899,19 @@
 
             100% {
                 stroke: var(--glow-purple);
+            }
+        }
+        @keyframes animate-border-color {
+            0% {
+                border-color: var(--primary-blue);
+            }
+
+            50% {
+                border-color: var(--light-blue);
+            }
+
+            100% {
+                border-color: var(--glow-purple);
             }
         }
 
@@ -1306,6 +1438,9 @@
             .logo span {
                 transform: translate(60px, 0px);
             }
+            .story-image::after{
+                opacity: 1;
+            }
         }
 
 
@@ -1447,20 +1582,38 @@
                 flex-direction: column;
                 gap: 1.5rem;
             }
+            .story-image::after{
+                opacity: 1;
+            }
         }
     </style>
 </head>
 
-<body>
+<body class="loading"> <!-- 'loading' sınıfı JS tarafından kaldırılacak -->
+
+    <!-- YENİ EKLENEN YÜKLEME EKRANI -->
+    <div id="loading-overlay">
+        <div class="loader-scene">
+            <!-- Bu konteyner yörüngeyi dönecek -->
+            <div class="loader-chase-path">
+                <!-- Taşlar bu konteynerin içine yerleştirilecek -->
+                <i class="fas fa-chess-king loading-chess-piece loading-king"></i>
+                <i class="fas fa-chess-queen loading-chess-piece loading-queen"></i>
+            </div>
+        </div>
+        <p class="loading-text">|♟️♟️| PİYONİST |♟️♟️|</p>
+    </div>
+
     <svg width="0" height="0" aria-hidden="true" style="position: fixed;">
+        <!-- CORRECTED FILTER BLOCK -->
         <filter id="glow-1" x="-.25" y="-.25" width="1.5" height="1.5">
             <feComponentTransfer in="SourceGraphic" result="grad">
                 <feFuncA type="table" tableValues="0 2 0"></feFuncA>
             </feComponentTransfer>
-            <feMorphology operator="dilate" radius="calc(.5 * var(--glow-b))"></feMorphology>
-            <feGaussianBlur stdDeviation="var(--glow-b)" result="glow"></feGaussianBlur>
+            <feMorphology operator="dilate" radius="2"></feMorphology>
+            <feGaussianBlur stdDeviation="4" result="glow"></feGaussianBlur>
             <feTurbulence type="fractalNoise" baseFrequency="7.13"></feTurbulence>
-            <feDisplacementMap in="glow" scale="calc(var(--glow-m) * var(--glow-b))" yChannelSelector="R">
+            <feDisplacementMap in="glow" scale="8" yChannelSelector="R">
             </feDisplacementMap>
             <feComponentTransfer>
                 <feFuncA type="linear" slope=".8"></feFuncA>
@@ -1930,6 +2083,26 @@
     </footer>
 
     <script>
+        // --- YENİ YÜKLEME EKRANI KONTROLÜ ---
+        // Bu kod, tüm sayfa içeriği (resimler, scriptler vs.) yüklendikten sonra çalışır.
+        window.addEventListener('load', () => {
+            const loadingOverlay = document.getElementById('loading-overlay');
+            const body = document.body;
+
+            // Animasyon döngüsünün en az bir kez tamamlanması için bekleme süresi
+            setTimeout(() => {
+                loadingOverlay.classList.add('hidden');
+                body.classList.remove('loading');
+
+                loadingOverlay.addEventListener('transitionend', () => {
+                    loadingOverlay.remove();
+                });
+            }, 1000); // Süre, CSS'teki orbit-rotation animasyonuyla senkronize edildi (4s).
+        });
+
+
+
+        // Mevcut Scriptleriniz Buradan Başlıyor
         document.addEventListener('DOMContentLoaded', () => {
             const spotlight = document.querySelector('.global-spotlight');
             if (spotlight) {
