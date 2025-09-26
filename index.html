@@ -12,7 +12,7 @@
     <meta name="keywords"
         content="satranç, yapay zeka, satranç koçu, piyonist, satranç analizi, satranç eğitimi, online satranç, satranç stratejileri, TSF">
 
-    <link rel="canonical" href="https://www.piyonist.com/"> 
+    <link rel="canonical" href="https://www.piyonist.com/">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -20,7 +20,7 @@
     <meta property="og:description"
         content="Piyonist ile satrançta ustalığa ulaşın! Hamlelerinizi analiz edin, hatalarınızı keşfedin ve kişiselleştirilmiş eğitimlerle oyununuzu zirveye taşıyın.">
     <meta property="og:image" content="https://www.piyonist.com/images/piyonist-og-image.jpg">
-    <meta property="og:url" content="https://www.piyonist.com/"> 
+    <meta property="og:url" content="https://www.piyonist.com/">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="tr_TR">
 
@@ -744,6 +744,8 @@
 
         .sponsor-logos img {
             height: 40px;
+            width: auto;
+            /* EKLENDİ */
             transition: all 0.3s ease-out;
         }
 
@@ -821,6 +823,10 @@
 
         .story-image img {
             width: 100%;
+            height: auto;
+            /* EKLENDİ */
+            display: block;
+            /* EKLENDİ */
             border-radius: 12px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             transition: all 0.2s linear;
@@ -1723,16 +1729,16 @@
     <header class="header">
         <div class="container">
             <nav class="navbar" aria-label="Ana Gezinti">
-                <a target="_blank" href="https://www.linkedin.com/company/piyonist-satranc" rel="noopener noreferrer" class="logo">
-                    <!-- SEO: Görsel optimizasyonu. width ve height eklemek Core Web Vitals için önemlidir. -->
+                <a href="https://www.linkedin.com/company/piyonist-satranc" target="_blank" rel="noopener noreferrer"
+                    class="logo">
                     <img style="backdrop-filter:blur(1px);" src="images/piyonist-logo1.png"
                         alt="Piyonist Satranç Logosu" width="50" height="50">
                     <span id="nav-brand" style="font-size: 19px;">Piyonist Satranç</span>
                 </a>
                 <div class="navbar-right-items">
                     <a href="#cta" class="btn btn-secondary" id="nav-early-access-btn">Erken Erişime Katıl</a>
-                    <a href="https://calendly.com/piyonistsatranc2025/30min" target="_blank" class="btn btn-primary"
-                        id="nav-get-demo-btn" style="margin-left:10px">Get a Demo</a>
+                    <a href="https://calendly.com/piyonistsatranc2025/30min" target="_blank" rel="noopener noreferrer"
+                        class="btn btn-primary" id="nav-get-demo-btn" style="margin-left:10px">Get a Demo</a>
                     <select id="language-selector" class="language-selector" aria-label="Dil seçimi">
                         <option value="tr" selected>TR</option>
                         <option value="en">EN</option>
@@ -1749,7 +1755,6 @@
             <div class="container">
                 <div class="hero-grid">
                     <div class="hero-content fade-in">
-                        <!-- SEO: Sayfanın en önemli başlığı H1 olmalıdır. Sadece bir tane H1 olmalı. -->
                         <h1 id="hero-title">Satrançta Ustalığa Giden Yol: <br> Kişisel Yapay Zeka Koçunuz.</h1>
                         <p id="hero-description">Piyonist ile hamlelerinizi gerçek zamanlı analiz edin, stratejik
                             hatalarınızı anında keşfedin ve potansiyelinizle eğitimlerle oyununuzu zirveye taşıyın.</p>
@@ -1757,7 +1762,8 @@
                             <a href="#cta" class="btn btn-primary" id="hero-early-access-btn"
                                 style="font-size:15px">Erken Erişime Katıl</a>
                             <a href="https://calendly.com/piyonistsatranc2025/30min" target="_blank"
-                                class="btn btn-secondary" id="hero-get-demo-btn">Get a Demo</a>
+                                rel="noopener noreferrer" class="btn btn-secondary" id="hero-get-demo-btn">Get a
+                                Demo</a>
                             <a href="#features" class="btn btn-secondary" id="hero-how-it-works-btn">Nasıl Çalışır?
                                 ↓</a>
                         </div>
@@ -1782,8 +1788,8 @@
             <div class="container text-center">
                 <h3 class="fade-in" id="sponsors-title">TÜRKİYE'NİN GELECEĞİNE GÜVENENLER</h3>
                 <div class="sponsor-logos fade-in">
-                    <img src="images/piyonist-tsflogo.png" alt="Türkiye Satranç Federasyonu Logosu" width="180"
-                        height="56">
+                    <img src="images/piyonist-tsflogo.png" style="width: 200px;height: 200px;"
+                        alt="Türkiye Satranç Federasyonu Logosu" width="180" height="56">
                 </div>
             </div>
         </section>
@@ -1844,7 +1850,6 @@
                         <div class="story-team-reveal">
                             <h3 id="team-reveal-title">Biz Kimiz ?</h3>
                             <div class="team-members-grid">
-                                <!-- [MEVCUT TAKIM ÜYELERİ SVG KODU BURADA KALIYOR] -->
                                 <div class="team-member-entry">
                                     <svg width="100%" height="100%" viewBox="0 0 500 60">
                                         <path id="path-1" class="signature-path"
@@ -2007,7 +2012,6 @@
                     <form id="early-access-form" class="cta-form" action="https://formspree.io/f/xeoklpwl"
                         method="POST">
                         <label for="cta-email-input" class="sr-only">E-posta Adresi</label>
-                        <!-- SEO & a11y: Form elemanları için etiket -->
                         <input type="email" name="email" id="cta-email-input" placeholder="E-posta adresinizi girin"
                             required>
                         <button type="submit" class="btn btn-primary" id="cta-submit-btn">Beni Listeye Ekle</button>
@@ -2025,7 +2029,6 @@
             </div>
             <div class="faq-container fade-in">
                 <div class="faq-item glass-card">
-                    <!-- SEO & a11y: Erişilebilir akordiyon menü için ARIA etiketleri eklendi. -->
                     <div class="faq-question" role="button" tabindex="0" aria-expanded="false"
                         aria-controls="faq1-answer-panel">
                         <h4 id="faq1-question">Piyonist tam olarak ne işe yarıyor?</h4>
@@ -2170,8 +2173,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-left">
-                    <img src="images/piyonist-logo1.png" alt="Piyonist Beyaz Logo" class="footer-logo" width="50"
-                        height="50">
+                    <img style="width: 50px;height: 50px;" src="images/piyonist-logo1.png" alt="Piyonist Beyaz Logo"
+                        class="footer-logo" width="50px" height="50px">
                     <p id="footer-text">© 2024 Piyonist. Tüm hakları saklıdır.<br>Türkiye'nin genç beyinleri tarafından
                         geliştirilmiştir. 🇹🇷</p>
                 </div>
@@ -2196,10 +2199,7 @@
         </div>
     </footer>
 
-    <!-- TEKNİK SEO ÖNERİSİ: Bu kadar uzun bir JS kodunu harici bir dosyaya taşımak en iyisidir. -->
-    <!-- Örnek: <script src="script.js" defer></script> (defer, sayfa yüklendikten sonra çalışmasını sağlar) -->
     <script>
-        // [MEVCUT JAVASCRIPT KODUNUZ BURADA KALIYOR]
         window.addEventListener('load', () => {
             const loadingOverlay = document.getElementById('loading-overlay');
             const body = document.body;
